@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on 2024-05-30 15:45
-
-@author: @木羽Cheney
-@description: FastAPI  API 路由
-"""
-
+from fastapi.staticfiles import StaticFiles
+from typing import List
 
 from typing import Union
 from fastapi import FastAPI
@@ -32,17 +27,56 @@ def create_app(run_mode: str = None):
         allow_headers=["*"],
     )
 
+    # 挂载路由
     mount_app_routes(app)
+
+    # 挂载 Vue 构建的前端静态文件夹
+    app.mount("/", StaticFiles(directory="static/dist"), name="static")
     return app
 
 
-def mount_app_routes(app: FastAPI, run_mode: str = None):
+
+from server.verify.utils import create_conversation, get_user_conversations, get_conversation_messages, ConversationResponse, MessageResponse
+from server.chat.knowledge_base_chat import knowledge_base_chat
+
+
+def mount_app_routes(app: FastAPI):
+    """
+    这里定义通用领域问答对话的接口
+    """
     
     # 大模型对话接口
     app.post("/api/chat",
              tags=["Chat"],
              summary="大模型对话交互接口",
              )(chat)
+
+    # 新建会话接口
+    app.post("/api/conversations",
+             tags=["Conversations"],
+             summary="新建会话接口",
+             )(create_conversation)
+
+    # 获取用户会话列表接口
+    app.get("/api/users/{user_id}/conversations",  # 确保路径正确表示用户ID的参数化
+             response_model=List[ConversationResponse],  # 使用正确的响应模型
+             tags=["Users"],
+             summary="获取指定用户的会话列表",
+             )(get_user_conversations)
+
+    # # 通用知识库问答接口
+    app.post("/api/chat/knowledge_base_chat",
+             tags=["Chat"],
+             summary="与知识库对话")(knowledge_base_chat)
+
+    # 获取会话消息列表接口
+    app.get("/api/conversations/{conversation_id}/messages",
+             response_model=List[MessageResponse],  # 使用正确的响应模型
+             tags=["Messages"],
+             summary="获取指定会话的消息列表",
+             )(get_conversation_messages)
+
+
 
 def run_api(host, port, **kwargs):
     if kwargs.get("ssl_keyfile") and kwargs.get("ssl_certfile"):

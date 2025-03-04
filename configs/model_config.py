@@ -1,9 +1,12 @@
+
+MODEL_ROOT_PATH = ""
+
 TEMPERATURE = 0.8
-#
-# LLM_MODELS = ["chatglm3-6b", "zhipu-api"]
+
+# LLM_MODELS = ["zhipu-api"]
 
 LLM_MODELS = ["chatglm3-6b", "zhipu-api"]
-
+# LLM_MODELS = ["chatglm3-6b"]
 MODEL_PATH = {
     # 这里定义 本机服务器上存储的大模型权重存储路径
     "local_model": {
@@ -45,4 +48,8 @@ ONLINE_LLM_MODEL = {
 
 
 
+# 选用的 Embedding 名称
+EMBEDDING_MODEL = "bge-large-zh-v1.5"
 
+# Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一。
+EMBEDDING_DEVICE = "auto"

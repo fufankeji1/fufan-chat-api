@@ -10,6 +10,9 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
+"""
+官方文档：https://docs.sqlalchemy.org/en/20/dialects/mysql.html
+"""
 
 # 用于创建一个基类，该基类将为后续定义的所有模型类提供 SQLAlchemy ORM 功能的基础。
 Base = declarative_base()
@@ -47,11 +50,9 @@ database_name = 'test'
 
 from urllib.parse import quote
 
-# 使用 quote 函数对密码进行编码
-password_encoded = quote('Snowball2019)&@(')
+password = "snowball950123"
 
-# 现在使用编码后的密码构建连接字符串
-SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{username}:{password_encoded}@{hostname}/{database_name}?charset=utf8mb4"
+SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{username}:{password}@{hostname}/{database_name}?charset=utf8mb4"
 
 from sqlalchemy import create_engine
 

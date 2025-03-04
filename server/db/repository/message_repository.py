@@ -8,7 +8,6 @@ from server.db.models.user_model import UserModel
 from sqlalchemy.future import select
 
 
-
 @with_async_session
 async def add_message_to_db(session,
                             user_id: str,
@@ -24,11 +23,6 @@ async def add_message_to_db(session,
     新增聊天记录
     """
 
-    # 二次校验是否为合法用户
-    user = await session.get(UserModel, user_id)
-    if not user:
-        return {"error": "用户不存在", "user_id": user_id}
-
     # 获取会话ID
     conversation = await session.get(ConversationModel, conversation_id)
 
@@ -43,7 +37,7 @@ async def add_message_to_db(session,
 
     # 要判断是否存在会话的ID
     if not message_id:
-        message_id = uuid.uuid4().hex
+        message_id = str(uuid.uuid4())
 
     # 创建MessageModel实例
     m = MessageModel(id=message_id,
@@ -60,12 +54,6 @@ async def add_message_to_db(session,
     # 异步提交
     await session.commit()
     return m.id
-
-
-
-
-
-
 
 
 @with_async_session
