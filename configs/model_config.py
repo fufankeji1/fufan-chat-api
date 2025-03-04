@@ -1,3 +1,5 @@
+import os
+
 MODEL_ROOT_PATH = ""
 
 TEMPERATURE = 0.8
@@ -25,7 +27,7 @@ SEARCH_ENGINE_TOP_K = 3
 MODEL_PATH = {
     # 这里定义 本机服务器上存储的大模型权重存储路径
     "local_model": {
-        "chatglm3-6b": "/home/00_rag/model/ZhipuAI/chatglm3-6b",
+        "chatglm3-6b": "/home/00_rag/model/ZhipuAI/chatglm3-6b/",
 
         # 可扩展其他的开源大模型
 
@@ -35,11 +37,13 @@ MODEL_PATH = {
     "embed_model": {
         "bge-large-zh-v1.5": "/home/00_rag/model/AI-ModelScope/bge-large-zh-v1___5",
 
+
         # 可扩展其他的Embedding模型
     },
 
     "reranker": {
         "bge-reranker-large": "/home/00_rag/model/Xorbits/bge-reranker-large",
+
     }
 }
 
@@ -87,7 +91,7 @@ SEARCH_ENGINE_TOP_K = 3
 SEARCH_RERANK_TOP_K = 3
 
 URL = "https://google.serper.dev/search"
-SERPER_API_KEY=""  # 这里替换为自己实际的Serper API Key
+SERPER_API_KEY = ""  # 这里替换为自己实际的Serper API Key
 
 ZILLIZ_URI = "https://in03-053b56bef5db18e.api.gcp-us-west1.zillizcloud.com"
 ZILLIZ_TOKEN = ""

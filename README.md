@@ -1,12 +1,13 @@
 # fufan-chat-api
 fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API接口的提供。采用稳健的后端技术，确保服务的稳定性和可扩展性。
 
-## 版本：v4.0
+## 版本：v5.0
 
 ## 业务流程
 
-1. 实时联网 + RAG 检索开发逻辑
-![6](https://muyu001.oss-cn-beijing.aliyuncs.com/img/%E8%81%94%E7%BD%91%E6%A3%80%E7%B4%A2.png)
+1. LLM推荐系统的一种思路
+![1](https://muyu001.oss-cn-beijing.aliyuncs.com/img/123.png)
+
 
 
 ## 介绍
@@ -19,7 +20,6 @@ fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API�
 3. 灵活接入在线API模型
 4. 接入Mysql数据库
 5. 接入向量数据库
-6. 接入SerperAPI做联网实时检索
 
 功能方面：
 
@@ -44,7 +44,7 @@ fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API�
 
 1. 克隆仓库并安装依赖：
     ```bash
-    git clone --branch v4.0.0 https://github.com/fufankeji/fufan-chat-api.git
+    git clone --branch v5.0.0 https://github.com/fufankeji/fufan-chat-api.git
     cd fufan-chat-api
     pip install -r requirements.txt
     ```
@@ -69,16 +69,13 @@ fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API�
 ### POST 请求示例
 
 ```http
-http://192.168.110.131:8000/api/chat/search_engine_chat  # 替换为自己实际启动的服务 IP + 端口
+http://192.168.110.131:8000/api/chat/recommend_chat  # 替换为自己实际启动的服务 IP + 端口
 
 {
-    "query":"保罗乔治加盟了哪一支NBA球队？",
-    "search_top_k":3,
+    "query":"有哪些云平台可以租用GPU部署ChatGLM3-6b模型？",
     "model_name":"chatglm3-6b",
-    "prompt_name":"default",
     "user_id":"admin",
-    "conversation_id":"df221b2f-ea52-4200-82f5-fcfc011e6786", 
-    "retrival_top_k":3,
-    "knowledge_base_name":"test"
+    "conversation_id":"576cf4f4-caef-457e-93c4-0234ada7c056", # 这里需要替换为自己数据库中已有的id
+    "knowledge_base_name":"recommend_test"
 }
 ```
