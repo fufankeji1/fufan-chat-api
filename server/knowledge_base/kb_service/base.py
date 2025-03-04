@@ -183,6 +183,7 @@ class KBService(ABC):
                     top_k: int = VECTOR_SEARCH_TOP_K,
                     score_threshold: float = SCORE_THRESHOLD,
                     ) ->List[Document]:
+
         docs = await self.do_search(query, top_k, score_threshold)
         return docs
 
