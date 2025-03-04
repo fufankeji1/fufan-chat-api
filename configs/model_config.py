@@ -2,31 +2,36 @@ import os
 
 MODEL_ROOT_PATH = ""
 
-TEMPERATURE = 0.8
+TEMPERATURE = 1.0
+MAX_TOKENS = 4096
+# 默认让大模型采用流式输出
+STREAM = True
 
-# LLM_MODELS = ["zhipu-api"]
-
+# 默认启动的模型，如果使用的是glm3-6b，请替换模型名称
+# LLM_MODELS = ["glm4-9b-chat", "zhipu-api"]
 LLM_MODELS = ["chatglm3-6b", "zhipu-api"]
-# LLM_MODELS = ["chatglm3-6b"]
 
 RERANKER_MODEL = "bge-reranker-large"
 RERANKER_MAX_LENGTH = 1024
 # 是否启用reranker模型
 USE_RERANKER = True
 
-Agent_MODEL = None
-HISTORY_LEN = 3
 # 知识库匹配向量数量
-VECTOR_SEARCH_TOP_K = 3
+VECTOR_SEARCH_TOP_K = 5
 # 知识库匹配的距离阈值，一般取值范围在0-1之间，SCORE越小，距离越小从而相关度越高。
-# 但有用户报告遇到过匹配分值超过1的情况，为了兼容性默认设为1，在WEBUI中调整范围为0-2
 SCORE_THRESHOLD = 1.0
+# 如果使用ReRank模型
+RERANKER_TOP_K = 3
+
 # 搜索引擎匹配结题数量
 SEARCH_ENGINE_TOP_K = 3
 
 MODEL_PATH = {
     # 这里定义 本机服务器上存储的大模型权重存储路径
     "local_model": {
+        # 默认使用glm4-9b-chat
+        "glm4-9b-chat": "/home/00_rag/model/ZhipuAI/chatglm4-9b-chat",
+
         "chatglm3-6b": "/home/00_rag/model/ZhipuAI/chatglm3-6b/",
 
         # 可扩展其他的开源大模型
@@ -37,7 +42,7 @@ MODEL_PATH = {
     "embed_model": {
         "bge-large-zh-v1.5": "/home/00_rag/model/AI-ModelScope/bge-large-zh-v1___5",
 
-
+        "m3e-base": "/home/00_rag/model/m3e-base",
         # 可扩展其他的Embedding模型
     },
 
@@ -51,7 +56,7 @@ ONLINE_LLM_MODEL = {
 
     # 智谱清言的在线API服务
     "zhipu-api": {
-        "api_key": "",
+        "api_key": "8e1482448c5924ea98bc483b4846009d.bViRUeDbZShksjPO",
         "version": "glm-4",
         "provider": "ChatGLMWorker",
     },
@@ -90,10 +95,8 @@ SEARCH_ENGINE_TOP_K = 3
 # 原始网页搜索结果筛选后保留的有效数量
 SEARCH_RERANK_TOP_K = 3
 
-URL = "https://google.serper.dev/search"
-SERPER_API_KEY = ""  # 这里替换为自己实际的Serper API Key
+# 历史对话窗口长度
+HISTORY_LEN = 5
 
-ZILLIZ_URI = "https://in03-053b56bef5db18e.api.gcp-us-west1.zillizcloud.com"
-ZILLIZ_TOKEN = ""
-ZILLIZ_DIM = 1024
-ZILLIZ_COLLECTION = "muyu"
+URL = "https://google.serper.dev/search"
+SERPER_API_KEY = "c4a95d2be3eb2337a373a308c8403f3dc82a1aee"  # 这里替换为自己实际的Serper API Key

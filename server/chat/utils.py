@@ -40,6 +40,7 @@ class History(BaseModel):
         role_maps = {
             "ai": "assistant",
             "human": "user",
+            "system": "system"  # 添加system角色的映射
         }
         role = role_maps.get(self.role, self.role)
         if is_raw:  # 当前默认历史消息都是没有input_variable的文本。
@@ -70,7 +71,8 @@ async def search(query, num, locale=''):
     # 初始化参数字典，包含搜索查询词和返回结果的数量
     params = {
         "q": query,  # 搜索查询词
-        "num": num  # 请求返回的结果数量
+        "num": num,  # 请求返回的结果数量
+        "hl": "zh-cn"
     }
 
     # 如果提供了地区设置，则添加到参数字典中
@@ -212,7 +214,9 @@ async def fetch_details(search_results):
     return chunks
 
 
-async def get_conversation_history(conversation_id: str, limit=3) -> List[Any]:
+async def get_conversation_history(conversation_id: str,
+                                   prompt_name: str,
+                                   limit=3,) -> List[Any]:
     """
     异步获取对话历史，并转化为交互消息格式。
 
@@ -220,7 +224,7 @@ async def get_conversation_history(conversation_id: str, limit=3) -> List[Any]:
     :return: 一个包含 HumanMessage 和 AIMessage 的列表
     """
     # 异步获取消息记录，限制为最近的3条
-    messages = await filter_message(conversation_id=conversation_id, limit=limit)
+    messages = await filter_message(conversation_id=conversation_id, limit=limit, chat_type=prompt_name)
     # 将消息记录按时间倒序转为正序
     messages = list(reversed(messages))
 
