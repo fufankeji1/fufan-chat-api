@@ -1,5 +1,4 @@
 <div align="center">
-  <img alt="simpleai-chat-api" width="120" height="120" src="https://muyu001.oss-cn-beijing.aliyuncs.com/img/20240823192944.jpg">
   <h1>simpleai-chat-api</h1>
 </div>
 
