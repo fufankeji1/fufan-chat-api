@@ -208,18 +208,3 @@ http://192.168.110.131:8000/api/chat  # 替换为自己实际启动的服务 IP 
     "model_name":"chatglm3-6b"
 }
 ```
-
-## 🙈 贡献
-欢迎通过GitHub提交pull request或者issues来对项目进行贡献。我们非常欢迎任何形式的贡献，包括功能改进、bug修复或是文档优化。
-
-
-## 😎 技术交流
-**fufan_chat_api目前上线了v1.0版本，将持续迭代更新，感兴趣的小伙伴欢迎加入技术交流群。如有其他任何问题，<span style="color:red;">扫码添加小可爱(微信：littlelion_1215)，回复“RAG”详询哦👇</span>**
-
-<div align="center">
-<img src="https://ml2022.oss-cn-hangzhou.aliyuncs.com/img/image-20240713010710534.png" alt="image-20240713010710534" width="200"/>
-</div>
-
-#### [课程详情页👉](https://whakv.xetslk.com/s/1lSCCD)：该项目提供详细的源码讲解，可进入课程目录详细了解。
-#### [BiliBili公开课视频 @木羽Cheney👉](https://space.bilibili.com/3537113897241540?spm_id_from=333.337.0.0)：实时追踪大模型前言发展与应用。
-
