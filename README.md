@@ -1,6 +1,6 @@
-# fufan-chat-api
+# simpleai-chat-api
 
-fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API接口的提供。采用稳健的后端技术，确保服务的稳定性和可扩展性。
+simpleai-chat-api项目的后端服务，负责处理业务逻辑、数据存储和API接口的提供。采用稳健的后端技术，确保服务的稳定性和可扩展性。
 
 ## 版本：v1.0
 
@@ -25,8 +25,8 @@ fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API�
 1. 私有化启动 Glm4-9B-Chat或者ChatGLM3-6B。
 2. 克隆仓库并安装依赖：
     ```bash
-    git clone --branch v1.0.0 https://github.com/fufankeji/fufan-chat-api.git
-    cd fufan-chat-api
+    git clone --branch v1.0.0 https://github.com/simpleai-git/simpleai-chat-api.git
+    cd simpleai-chat-api
     pip install -r requirements.txt
     ```
 3. 启动后端服务：
