@@ -1,5 +1,5 @@
-# fufan-chat-api
-fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API接口的提供。采用稳健的后端技术，确保服务的稳定性和可扩展性。
+# simpleai-chat-api
+simpleai-chat项目的后端服务，负责处理业务逻辑、数据存储和API接口的提供。采用稳健的后端技术，确保服务的稳定性和可扩展性。
 
 ## 版本：v5.0
 
@@ -44,18 +44,18 @@ fufan-chat项目的后端服务，负责处理业务逻辑、数据存储和API�
 
 1. 克隆仓库并安装依赖：
     ```bash
-    git clone --branch v5.0.0 https://github.com/fufankeji/fufan-chat-api.git
-    cd fufan-chat-api
+    git clone --branch v5.0.0 https://github.com/simpleai-git/simpleai-chat-api.git
+    cd simpleai-chat-api
     pip install -r requirements.txt
     ```
 2. 本地部署Mysql服务并启动
 3. 初始化关系型数据库表
     ```bash
-    python /fufan-chat-api/server/db/create_all_model.py
+    python /simpleai-chat-api/server/db/create_all_model.py
     ```
 4. 初始化Faiss向量数据库
     ```bash
-    python /fufan-chat-api/server/knowledge_base/init_vs.py
+    python /simpleai-chat-api/server/knowledge_base/init_vs.py
     ```
 5. 本地部署milvus向量数据库并启动
 6. 启动后端服务：
